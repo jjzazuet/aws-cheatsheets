@@ -3,7 +3,7 @@
 ## Use cases
 
 - Expensive data retrieval operations.
-- Data accesses with high frequency.
+- Data accessed with high frequency.
 - Relatively static data. If rapidly chaning, data where stale copies is tolerable.
 
 ## Components
@@ -16,13 +16,13 @@
 ## Redis engine
 
 - Can cache collections.
-- Supports multiple availability zones to read replica when cluster supports replication.
+- Supports multiple availability zones on read replicas when cluster supports replication.
 - Supports in transit and at rest encryption.
 - Can be used as data store.
 - A group of Redis shards forms a cluster (1 to 90 shards).
 - A cluster has a primary node and replicas.
 - If a primary node fails with no replicas, data is lost.
-- Needs backup and restore to migrate or resize Redise clusters.
+- Needs backup and restore to migrate or resize Redis clusters.
   - Can do automatic or manual backups.
 - Global data store offers cross-region replication.
 - Scales vertically on demand.
@@ -40,6 +40,7 @@
   - Individual nodes have their own endpoints.
   - The whole cluster has a configuration endpoint.
 - Access is controlled via security groups.
+- Does not support encryption.
 - Horizontal scaling does not affect the cluster.
 - Vertical scaling requires re-creating the cluster.
 
@@ -51,21 +52,21 @@
   - Data may be stale.
 - Write-through
   - Adds or updates data in the cache when it's written to the target backend.
-  - No stale data
+  - No stale data.
   - Writes incurr performance penalties (write to backend, then to cache).
-  - Cache churn if most data is never read, wasting resources.
+  - Cache churn: if most data is never read, wasting resources.
 
 ## Integration
 
 - Redis:
-  - Uses cache parameter groups to configure either engine (i.e. memory, eviction, storage, etc.).
   - Uses TLS for in-flight encryption, and KMS customer master keys for at-rest enryption.
-  - Global Data store allows multi region replication.
+  - Can configure optional authentication via Redis AUTH with passwords.
 
 - Both:
+  - Uses cache parameter groups to configure either engine (i.e. memory, eviction, storage, etc.).
   - Network access is granted from whitelisted EC2 instances.
   - Use subnet groups or security groups to allow EC2 instance access.
-  - Elasticache needs a cache subnet group to choose a subnet and IP addresses to associate with nodes.
+  - Elasticache needs a `cache subnet` group to choose a subnet and IP addresses to associate with nodes.
 
 ## Metrics
 
