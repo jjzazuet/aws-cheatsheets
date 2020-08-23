@@ -2,18 +2,19 @@
 
 ## Components
 
-- Uses traces as the main unit of work.
-  - Uses segments and subsegments.
+- Uses segments as the main unit of work. For HTTP, it has:
+  - Host
+  - Request
+  - Response
+  - Start, end time, and subsegments.
+  - Errors, faults and exceptions.
+- Segments can have subsegments.
+  - Subsegments are defined for services which do not emit segment data.
+- Segments get grouped into Traces.
 - Segments connect to form a service graph.
   - Provides visual representation of an application.
   - Connection occurs via a common trace id amongst traces.
   - JSON document, visualized in the console.
-
-## Sampling
-
-- Uses a sampling algorith.
-  - By default, trace first request each second, then 5% of additional requests.
-  - Trace sampling rate is configurable.
 
 ## Filter expressions
 
@@ -35,12 +36,15 @@
   - API Gateway - Active, passive instrumentation. Uses sampling rules.
   - ELB - request tracing.
 - Four ways to integrate:
-  - Active instrumentation - samples/instruments incoming requests.
-  - Passive instrumentation - instruments requests sampled by another service.
+  - Active tracing - samples/traces incoming requests.
+  - Passive tracing - instruments requests sampled by another service.
   - Request tracing - Adds tracing header to incoming requests, propagates downstream.
   - Tooling - Runs the X-ray daemon to receive segments from the X-Ray SDK.
     - Needs SDK + daemon agent installed.
     - The X-Ray daemon buffers segments in a queue and uploads to X-Ray in batches.
+- Sampling rules
+  - Can work on the X-Ray SDK with active tracing.
+  - TBD how is sampling customized.
 
 ## Metrics
 
