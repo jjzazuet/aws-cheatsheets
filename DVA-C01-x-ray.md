@@ -27,14 +27,6 @@
 
 ## Integration
 
-- Can add tracing headers to incoming requests.
-- Works with:
-  - EC2 - Tooling.
-  - ECS - Tooling.
-  - Lambda - Active, passive instrumentation.
-  - Beanstalk - Tooling.
-  - API Gateway - Active, passive instrumentation. Uses sampling rules.
-  - ELB - request tracing.
 - Four ways to integrate:
   - Active tracing - samples/traces incoming requests.
   - Passive tracing - instruments requests sampled by another service.
@@ -42,6 +34,17 @@
   - Tooling - Runs the X-ray daemon to receive segments from the X-Ray SDK.
     - Needs SDK + daemon agent installed.
     - The X-Ray daemon buffers segments in a queue and uploads to X-Ray in batches.
+    - X-Ray SDK uses:
+      - Interceptors - for requests directed to the service
+      - Client handlers - for other SDKs (i.e. aws cli).
+      - HTTP client - for calls to external HTTP api's or services.
+- Works with:
+  - EC2 - Tooling.
+  - ECS - Tooling.
+  - Lambda - Active, passive instrumentation.
+  - Beanstalk - Tooling.
+  - API Gateway - Active, passive instrumentation. Uses sampling rules.
+  - ELB - request tracing.
 - Sampling rules
   - Can work on the X-Ray SDK with active tracing.
   - TBD how is sampling customized.
