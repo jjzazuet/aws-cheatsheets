@@ -3,7 +3,7 @@
 ## Components
 
 - Uses traces as the main unit of work.
-- Uses segments and subsegments.
+  - Uses segments and subsegments.
 - Segments connect to form a service graph.
   - Provides visual representation of an application.
   - Connection occurs via a common trace id amongst traces.
@@ -28,8 +28,8 @@
 
 - Can add tracing headers to incoming requests.
 - Works with:
-  - EC2 - Tooling?
-  - ECS
+  - EC2 - Tooling.
+  - ECS - Tooling.
   - Lambda - Active, passive instrumentation.
   - Beanstalk - Tooling.
   - API Gateway - Active, passive instrumentation. Uses sampling rules.
