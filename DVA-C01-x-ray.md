@@ -26,9 +26,21 @@
 
 ## Integration
 
-- Works with EC2, ECS, Lambda, Beanstalk.
-  - Needs SDK + agent installed.
-  - The X-Ray daemon buffers segments in a queue and uploads to X-Ray in batches.
+- Can add tracing headers to incoming requests.
+- Works with:
+  - EC2 - Tooling?
+  - ECS
+  - Lambda - Active, passive instrumentation.
+  - Beanstalk - Tooling.
+  - API Gateway - Active, passive instrumentation. Uses sampling rules.
+  - ELB - request tracing.
+- Four ways to integrate:
+  - Active instrumentation - samples/instruments incoming requests.
+  - Passive instrumentation - instruments requests sampled by another service.
+  - Request tracing - Adds tracing header to incoming requests, propagates downstream.
+  - Tooling - Runs the X-ray daemon to receive segments from the X-Ray SDK.
+    - Needs SDK + daemon agent installed.
+    - The X-Ray daemon buffers segments in a queue and uploads to X-Ray in batches.
 
 ## Metrics
 
@@ -40,3 +52,9 @@
 - Can use the X-Ray SDK for Java to publish unsampled Amazon CloudWatch metrics from your collected X-Ray segments.
   - Segment start and end time
   - Error, fault and throttled status flags
+
+## Pricing
+
+- Bill = # of traces recorded retrieved, scanned.
+- Max trace size is 500KB.
+- Trace data is retained for 30 days at no cost.
