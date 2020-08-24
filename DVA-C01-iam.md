@@ -44,7 +44,7 @@
 - Can be temporarily attached to IAM users to perform a task.
 - Can be attached to services for automatic actions on the account.
 - Some services assume a special EC2 role to lanuch instances, and then pass the role to the launched instance.
-- Service roles are default roles for service which define what's needed to call other services.
+- Service roles are default roles for services which define what's needed to call other services.
 - To assume a role, call `AssumeRole` to get an access key with ID, secret, and a security token.
   - MFA and SAML can optionally be used.
 
@@ -75,17 +75,60 @@
 
 ### Policy rules
 
-- All requests are denied by default.
-- Explicit allow overrides the default.
+- All requests are implicitly denied by default.
+- Explicit allows overrides the default.
 - Explicit denies override any allows.
+
+```json
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Sid": "ReadWriteTable",
+            "Effect": "Allow",
+            "Action": [
+                "dynamodb:BatchGetItem",
+                "dynamodb:GetItem",
+                "dynamodb:Query",
+                "dynamodb:Scan",
+                "dynamodb:BatchWriteItem",
+                "dynamodb:PutItem",
+                "dynamodb:UpdateItem"
+            ],
+            "Resource": "arn:aws:dynamodb:*:*:table/SampleTable"
+        },
+        {
+            "Sid": "GetStreamRecords",
+            "Effect": "Allow",
+            "Action": "dynamodb:GetRecords",
+            "Resource": "arn:aws:dynamodb:*:*:table/SampleTable/stream/* "
+        },
+        {
+            "Sid": "WriteLogStreamsAndGroups",
+            "Effect": "Allow",
+            "Action": [
+                "logs:CreateLogStream",
+                "logs:PutLogEvents"
+            ],
+            "Resource": "*"
+        },
+        {
+            "Sid": "CreateLogGroup",
+            "Effect": "Allow",
+            "Action": "logs:CreateLogGroup",
+            "Resource": "*"
+        }
+    ]
+}
+```
 
 ### AWS Managed Policies
 
 - Defines a set of use cases that are most common in the IT industry:
   - Administrator - Grants all acctions on all services for all resources in the account.
-  - Blling - Grants access to manage billing, costs, payment methods, budgets, reports.
+  - Billing - Grants access to manage billing, costs, payment methods, budgets, reports.
   - Database Administrator - Grants permissions to create, configure, and maintain databases.
-  - Data Scientist - Access to information for data analytics and business intelligence. .
+  - Data Scientist - Access to information for data analytics and business intelligence.
   - Network Administrator - Setting up and maintaining AWS network resources.
   - Security Auditor - Grants permissions to view configuration data for many AWS services and to review their logs.
   - Support User - Grants permissions to create and update AWS Support cases.
