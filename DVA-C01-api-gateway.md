@@ -38,6 +38,8 @@ There are two types of Lambda authorizers:
 - Token-based - includes a token
 - Request parameter-based - puts auth data in headers
 
+Cognito user pool authrizers can also be configured in an API gateway.
+
 ## Metrics and troubleshooting
 
 - Sent to CloudWatch.
