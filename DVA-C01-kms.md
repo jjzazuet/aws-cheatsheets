@@ -20,11 +20,19 @@
 - Grants - also grant AWS principals access to the CMK.
   - Grant token allows for immediate use of the CMK.
 - CMK aliases can identify a single CMK under multiple names.
+- Requests can include the `x-amz-server-side-encryption` to indicate that data encryption at rest is required.
 
 ## Integration
 
 - CloudTrail provides access of key usage on resources.
 - Automatic key rotation - happens every year, keep copies of CMKs to decrypt past data.
+
+- `GenerateDataKeyWithoutPlaintext` API generates a unique data key.
+  - Returns a data key that is encrypted under a customer master key (CMK) that you specify.
+- `GenerateDataKeyWithoutPlaintext`
+  - Identical to `GenerateDataKey` except that it returns only the encrypted copy of the data key.
+  - Returns a unique data key for each request.
+  - Bytes in the key are not related to the caller or CMK that is used to encrypt the data key.
 
 ## Metrics
 

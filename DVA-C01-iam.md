@@ -135,7 +135,13 @@
   - System Administrator - Sets up and maintains resources for development operations. 
   - View Only User (ViewOnlyAccess) - Grants List*, Describe*, Get*, View*, and Lookup* access to resources for most AWS services.
 
+https://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies_testing-policies.html
+
 https://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies_job-functions.html
+
+Service linked roles are pre-defined by AWS for each kind of service, and cannot be changed.
+
+## Cross account access
 
 ### Security Token Service (STS)
 
@@ -144,6 +150,14 @@ https://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies_job-functions.h
 - Are short-lived, not stored, dynamically generated and provided when requested.
 - Consist of access key with ID, secret and security token.
 - Granted to IAM or federated users.
+
+## EC2 instance profile
+
+TBD
+
+## API calls
+
+- `AssumeRole` - makes a principal assume and IAM role.
 
 ## Metrics
 

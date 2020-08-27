@@ -32,6 +32,8 @@
 - Grouped into shards.
 - Streams allows integration with Lambda triggers.
   - Lambda pools the DynamoDB stream from shards every 4 seconds.
+- When an item in the table is modified, `StreamViewType` determines information written to the stream.
+  - Valid values - `KEYS_ONLY`, `NEW_IMAGE`, `OLD_IMAGE`, and `NEW_AND_OLD_IMAGES`.
 
 ## Read consistency
 
@@ -42,6 +44,9 @@
 
 - Read capacity: 1 unit = 4KB per second (1 strong consistent read, 2 eventual consistent reads).
 - Write capacity: 1 unit = 1KB per second.
+- Transactional
+  - Read requests - 2 RCUs.
+  - Write requests - 1 WCUs.
 
 ## Error handling
 
@@ -84,6 +89,12 @@ Scans:
 - Are similar to queries.
 - Are eventually consistent by default.
 
+## Record locking
+
+- Optimistic locking- uses a version number to prevent stale writes.
+- Pessimistic lock with read locking - others cannot read object while in memory.
+- Pessimistic lock with write locking - others cannot write object while in memory.
+
 ## Backup/Restore
 
 - Recorded in CloudTrail
@@ -115,3 +126,5 @@ Scans:
 
 - Hot partitions provide adaptive capcity to avoid throttling.
 - Burst capacity give flexibility on partition reads.
+
+https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/SecondaryIndexes.html

@@ -12,6 +12,8 @@
 - Namespace - container for metrics.
 - Metrics
   - Data lasts for 15 months.
+  - High resolution metrics can go down to per-second resolution.
+  - Uses the `collectd` daemon.
 - Dimensions - Name/value pair for a metric.
 - Staticstics
   - Has unit of measure.

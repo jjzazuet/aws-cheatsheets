@@ -25,6 +25,24 @@
 - Metadata is similar to annotations, but these are not indexed.
   - Is captured automatically for SQL databases, DynamoDB, SQS and SNS.
 
+## Namespaces
+
+- Container for metrics.
+- No default namespace. Can be specified when creating a metric.
+- Exmaple:
+  - `AWS/service`
+  - `AWS/EC2`
+
+## API Calls
+
+- `GetTraceSummaries`
+- `BatchGetTraces`
+- `GetGroup` - group resource details.
+
+## Useful headers
+
+- `X-Forwarded-For` - gets the source client IP.
+
 ## Integration
 
 - Four ways to integrate:
@@ -33,6 +51,8 @@
   - Request tracing - Adds tracing header to incoming requests, propagates downstream.
   - Tooling - Runs the X-ray daemon to receive segments from the X-Ray SDK.
     - Needs SDK + daemon agent installed.
+    - X-Ray Daemon.
+    - Runs on port UDP 2000.
     - The X-Ray daemon buffers segments in a queue and uploads to X-Ray in batches.
     - X-Ray SDK uses:
       - Interceptors - for requests directed to the service
@@ -65,3 +85,5 @@
 - Bill = # of traces recorded retrieved, scanned.
 - Max trace size is 500KB.
 - Trace data is retained for 30 days at no cost.
+
+https://docs.aws.amazon.com/xray/latest/devguide/xray-concepts.html#xray-concepts-tracingheader

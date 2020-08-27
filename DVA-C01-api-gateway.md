@@ -25,6 +25,15 @@ stage name: https://{restapi-id}.execute-api.{region}.amazonaws.com/{stageName}
   - `$method`
   - `$integration`
 
+## Request proxying
+
+- Programmatically, choose an integration type by setting the `type` property on the Integration resource.
+  - Lambda proxy integration is `AWS_PROXY`.
+  - Lambda custom integration and all other AWS integrations, it is `AWS`.
+  - HTTP proxy integration - `HTTP_PROXY`.
+  - HTTP integration - `HTTP`.
+  - Mock integration - `MOCK`.
+
 ## Lambda authorizers
 
 Is an API Gateway feature that uses a Lambda function to control access to the API.
@@ -39,6 +48,18 @@ There are two types of Lambda authorizers:
 - Request parameter-based - puts auth data in headers
 
 Cognito user pool authrizers can also be configured in an API gateway.
+
+## Integration
+
+Errors associated with HTTP 504:
+
+- INTEGRATION_FAILURE - gateway integration failed. If response type is unspecified, defaults to `DEFAULT_5XX`.
+- INTEGRATION_TIMEOUT - gateway integration timed out. If response type is unspecified, defaults to `DEFAULT_5XX`.
+
+Integration timeout range is from 50 milliseconds to 29 seconds for all integration types:
+ - Lambda, Lambda proxy.
+ - HTTP, HTTP proxy.
+ - AWS integrations.
 
 ## Metrics and troubleshooting
 
@@ -56,3 +77,7 @@ Cognito user pool authrizers can also be configured in an API gateway.
   - ApiName - API with the specified API name.
   - ApiName, Method, Resource, Stage
   - ApiName, Stage
+
+## Links
+
+- https://docs.aws.amazon.com/apigateway/latest/developerguide/api-gateway-api-integration-types.html
