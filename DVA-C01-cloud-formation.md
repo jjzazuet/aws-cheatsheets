@@ -29,6 +29,7 @@
 - CloudTrail - Captures APi calls.
 - Codepipeline
 - Can make use of VPC endpoints.
+- Can also pull values from Systems Manager Paramter Store as keys.
 
 ## Metrics
 

@@ -48,6 +48,20 @@
   - Read requests - 2 RCUs.
   - Write requests - 1 WCUs.
 
+## API calls
+
+To create, update, or delete an item in a DynamoDB table, use one of the following operations:
+
+- `PutItem`
+- `UpdateItem`
+- `DeleteItem`
+
+To return the number of write capacity units consumed by any of these operations, set the `ReturnConsumedCapacity` parameter to one of the following:
+
+- `TOTAL` — returns the total number of write capacity units consumed.
+- `INDEXES` — returns the total number of write capacity units consumed, with subtotals for the table and any secondary indexes that were affected by the operation.
+- `NONE` — no write capacity details are returned. (This is the default.)
+
 ## Error handling
 
 - Throws only 400 (throttling) and 500 (server errors) HTTP status codes.
