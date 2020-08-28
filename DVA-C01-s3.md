@@ -7,10 +7,9 @@ https://docs.aws.amazon.com/AmazonS3/latest/dev/S3_ACLs_UsingACLs.html
 
 ## Methods of encryption
 
-- Fully managed AWS encryption (SSE-KMS).
-  - `x-amz-server-side-encryption`
-  - `x-amz-server-side-encryption-aws-kms-key-id`
-- Server side encryption with customer provided key
+- Fully managed AWS encryption with default KMS key(SSE-KMS).
+  - `x-amz-server-side-encryption` = `aws:kms`
+- Server side encryption with customer provided key(SSE-C)
   - `x-amz-server-side-encryption-customer-algorithm`
   - `x-amz-server-side-encryption-customer-key`
   - `x-amz-server-side-encryption-customer-key-md5`

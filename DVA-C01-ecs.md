@@ -26,3 +26,12 @@ during an Amazon ECS deployment.
 
 - https://docs.aws.amazon.com/AmazonECS/latest/developerguide/task-placement-strategies.html
 - https://docs.aws.amazon.com/AmazonECS/latest/developerguide/task-placement.html
+
+## deployment
+ - Fargate 
+    - do not have task inplacement strategry
+    - multi-AZ
+- EC2
+    - 
+
+- cluster query language for grouping
