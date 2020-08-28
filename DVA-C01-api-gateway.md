@@ -4,6 +4,7 @@
 - Uses stages deployments and models.
 - Can be isolated through VPC endpoints (optional).
 - Can proxy HTTP and Lambda backends.
+- Can import Swagger/OpenAPI
 
 ## Deployment
 
@@ -60,6 +61,7 @@ Integration timeout range is from 50 milliseconds to 29 seconds for all integrat
  - Lambda, Lambda proxy.
  - HTTP, HTTP proxy.
  - AWS integrations.
+
 
 ## Metrics and troubleshooting
 

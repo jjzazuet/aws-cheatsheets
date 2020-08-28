@@ -166,3 +166,9 @@ TBD
 ## Pricing
 
 - IAM and STS are offered free of charge.
+
+## Best Practice
+
+- delete the root user key, or rotate the key regulary, or use MFA
+- never use root user to manage resources
+
