@@ -6,6 +6,7 @@
 - 32 levels of JSON nesting.
 - Connects via HTTPS with TLS certificates.
 - An EC2 instance can connect directly to DynamoDB via a VPC endpoint.
+- Global tables as multi-master region replicas.
 
 ## Keys and indexes
 
@@ -15,9 +16,12 @@
 - Local secondary indexes (max 5 per table) share the same primary key with the table.
     - Shares read and write throughput capacity with the base table.
     - Provides strong consistency in query results.
-- Global secondary indexes (max 20) have a different primary key.
+- Global secondary indexes (max 20) have a different partition key.
   - Has no size limit.
   - Has its own read and write capacity.
+  - Support eventual consistency only.
+
+To avoid potential throttling, the provisioned write capacity for a global secondary index should be equal or greater than the write capacity of the base table since new updates will write to both the base table and global secondary index.
 
 ## Queries
 
@@ -105,14 +109,15 @@ Scans:
 
 ## Record locking
 
-- Optimistic locking- uses a version number to prevent stale writes.
+- Optimistic locking - uses a version number to prevent stale writes.
 - Pessimistic lock with read locking - others cannot read object while in memory.
 - Pessimistic lock with write locking - others cannot write object while in memory.
+  - Last writer wins.
 
 ## Backup/Restore
 
 - Recorded in CloudTrail
-- They lock tables.
+- NOTE: They lock tables.
 - Can introduce skew values.
 
 ## Encryption & authentication

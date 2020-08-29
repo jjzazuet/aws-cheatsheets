@@ -34,6 +34,13 @@
   - Returns a unique data key for each request.
   - Bytes in the key are not related to the caller or CMK that is used to encrypt the data key.
 
+## API calls
+
+- `Encrypt`
+  - used to encrypt RSA keys, database passwords, or other sensitive information.
+  - Move encrypted data from one AWS region to another.
+  - NOT recommended if you want to encrypt your data locally. You have to use the `GenerateDataKey` operation instead.
+
 ## Metrics
 
 ## Pricing

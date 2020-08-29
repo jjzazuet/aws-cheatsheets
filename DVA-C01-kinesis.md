@@ -57,6 +57,8 @@ Errors
 
 ## Metrics
 
+- CloudWatch can help detect cold or hot shards.
+
 ## Pricing
 
 - Volume of data consumed.

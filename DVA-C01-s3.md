@@ -7,9 +7,12 @@ https://docs.aws.amazon.com/AmazonS3/latest/dev/S3_ACLs_UsingACLs.html
 
 ## Methods of encryption
 
-- Fully managed AWS encryption with default KMS key(SSE-KMS).
+- Server Side Ecnryption with S3 Managed Keys (SSE-S3).
+  - `x-amz-server-side-encryption` = `AES256`
+  - Applies envelope encryption/key rotation.
+- Fully managed AWS encryption with default KMS key (SSE-KMS).
   - `x-amz-server-side-encryption` = `aws:kms`
-- Server side encryption with customer provided key(SSE-C)
+- Server side encryption with customer provided key (SSE-C)
   - `x-amz-server-side-encryption-customer-algorithm`
   - `x-amz-server-side-encryption-customer-key`
   - `x-amz-server-side-encryption-customer-key-md5`
@@ -49,3 +52,6 @@ A CORS configuration is an XML file that contains a series of rules within a <CO
 Below are some of the CORSRule elements: 
 - `MaxAgeSeconds`  - Specifies the amount of time in seconds (in this example, 3000) that the browser caches an Amazon S3 response to a preflight OPTIONS request for the specified resource. By caching the response, the browser does not have to send preflight requests to Amazon S3 if the original request will be repeated.
 - `ExposeHeader`  - Identifies the response headers (in this example, x-amz-server-side-encryption, x-amz-request-id, and x-amz-id-2) that customers are able to access from their applications (for example, from a JavaScript XMLHttpRequest object).
+
+## S3 select
+

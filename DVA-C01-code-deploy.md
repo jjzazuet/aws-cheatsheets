@@ -6,6 +6,7 @@
   - Uses outbound HTTPS 443.
 
 https://docs.aws.amazon.com/codedeploy/latest/userguide/welcome.html#welcome-deployment-overview-blue-green
+
 ## Notice
 HTTPS 443 only
 on-premise - in place only

@@ -17,7 +17,7 @@
 - Dimensions - Name/value pair for a metric.
 - Staticstics
   - Has unit of measure.
-  - Sliced by period length
+  - Sliced by period length.
   - Min, max, avg, percentiles, etc.
 - Alarms
   - Watch a single metric.
@@ -26,7 +26,7 @@
   - States: `OK`, `ALARM`, `INSUFFICIENT_DATA`.
   - Needs
     - Period - expressed in seconds.
-    - Eval period - 
+    - Eval period - part of the period that can meet alarm threshold.
     - Datapoints to alarm - points that cause a breach.
 - Dashboard component - monitors global resources.
 - Uses IAM users or roles to grant access.
@@ -62,6 +62,10 @@
 
 - EC2 instances can install a CloudWatch Agent.
   - Collects more metrics from EC2 intances.
+  - Supported in Linux and Windows.
+  - Sends data every 5 seconds.
+- ECS
+  - Needs the CloudWatch Agent Docker image.
 
 ## Limits
 

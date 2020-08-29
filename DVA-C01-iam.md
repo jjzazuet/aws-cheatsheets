@@ -143,6 +143,8 @@ Service linked roles are pre-defined by AWS for each kind of service, and cannot
 
 ## Cross account access
 
+AWS Organizations allows you to consolidate payment for multiple AWS accounts or multiple AISPL accounts. Each organization in AWS Organizations has a master account that pays the charges for all the member accounts. 
+
 ### Security Token Service (STS)
 
 - Global service with single endpoint.

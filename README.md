@@ -21,9 +21,6 @@ AWS cheatsheets
 - ✅ ECS task groups? ECS placement constraints?
 - ✅ AWS Glacier retrieval options.
 - ✅ DynamoDB - `ReturnConsumedCapacity`.
-- ✅ WTF is Redshift?
-- ✅ AWS OpsWorks?
-- ✅ AWS Cloud9?
 - ✅ Origin groups in cloudfront?
 - ✅ Quicksight? Athena?
 - ✅ Lambda 504?
@@ -38,3 +35,24 @@ AWS cheatsheets
 - ✅ CloudFront failover origins?
 - ✅ Cloudwatch logs agent.
 - ✅ DynamoDB error retries, exponential backoff?
+
+- SWF options and events...
+- RDS Transparent Encryption?
+- RDS Encryption
+- Kinesis Hot Shards? Cold Shard?
+- SWF vs Step functions
+- Metrics for RDS
+- Tags & Billing?
+- WHERE can we add annotations in X-ray?
+- X-Ray read/write permissions for individual services.
+- Can CodeBuild talk to Lambda?
+- CloudFormation & AWS SAM helper scripts.
+- AWS CLI profiles? Security?
+- Client or Server side S3 encryption?
+- DynamoDB Global tables?
+- S3 Select?
+- EC2 instance metadata service?
+- AWS CloudFormation & SAM clis.
+
+- Where is API gateway caching configured?
+- CloudFormation mappings and parameter sections?

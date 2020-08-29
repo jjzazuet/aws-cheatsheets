@@ -18,6 +18,14 @@
 - Max execution time of 15 mins or 900 seconds.
 - Memory is adjustable, but not CPU.
 
+## Custom Runtimes
+
+You can implement an AWS Lambda runtime in any programming language. A runtime is a program that runs a Lambda function's handler method when the function is invoked. You can include a runtime in your function's deployment package in the form of an executable file named bootstrap.
+
+A runtime is responsible for running the function's setup code, reading the handler name from an environment variable, and reading invocation events from the Lambda runtime API. The runtime passes the event data to the function handler and posts the response from the handler back to Lambda.
+
+Your custom runtime runs in the standard Lambda execution environment. It can be a shell script, a script in a language that's included in Amazon Linux, or a binary executable file that's compiled in Amazon Linux.
+
 ## Extenral bindings
 
 - S3
@@ -112,6 +120,22 @@ Lambda can report the following metrics:
 
 https://docs.aws.amazon.com/whitepapers/latest/modern-application-development-on-aws/canary-deployments-to-aws-lambda.html
 
+DynamoDB streams
+
+You can create multiple event source mappings to process the same data with multiple Lambda functions, or process items from multiple streams with a single function. To configure your function to read from DynamoDB Streams in the Lambda console, create a DynamoDB trigger.
+
+You also need to assign the following permissions to Lambda:
+
+dynamodb:DescribeStream
+
+dynamodb:GetRecords
+
+dynamodb:GetShardIterator
+
+dynamodb:ListStreams
+
+The AWSLambdaDynamoDBExecutionRole managed policy already includes these permissions.
+
 ### Proxy integration types
 
 TODO
@@ -143,3 +167,19 @@ https://docs.aws.amazon.com/apigateway/api-reference/handling-errors/
 - `AWS_XRAY_DAEMON_ADDRESS`
   - Exposes the X-Ray daemon's address as `IP_ADDRESS:PORT`.
   - Use the X-Ray daemon's address to send trace data to X-Ray daemon directly, without using the X-Ray SDK.
+
+## Best Practices
+
+- Separate the Lambda handler (entry point) from your core logic.
+ - Take advantage of Execution Context reuse to improve the performance of your function
+ - Use AWS Lambda Environment Variables to pass operational parameters to your function.
+ - Control the dependencies in your function's deployment package. 
+ - Minimize your deployment package size to its runtime necessities.
+ - Reduce the time it takes Lambda to unpack deployment packages
+ - Minimize the complexity of your dependencies
+ - Avoid using recursive code 
+
+## Connectivity
+
+![VPC](https://udemy-images.s3.amazonaws.com/redactor/raw/2019-01-15_04-39-43-25377b4b40c4072dd7b322e9df3e75a1.png)
+
